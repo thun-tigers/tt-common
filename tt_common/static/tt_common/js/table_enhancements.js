@@ -187,8 +187,14 @@
             filterToggle.addEventListener("click", (event) => {
                 event.stopPropagation();
                 const willShow = filterPanel.classList.contains("hidden");
+                // Close all other open filter panels first
+                document.querySelectorAll(".table-filter-panel-open").forEach((el) => {
+                    el.classList.add("hidden");
+                    el.classList.remove("table-filter-panel-open");
+                });
                 filterPanel.classList.toggle("hidden", !willShow);
                 if (willShow) {
+                    filterPanel.classList.add("table-filter-panel-open");
                     input.focus();
                 }
             });
@@ -375,6 +381,14 @@
 
     function init() {
         Array.from(document.querySelectorAll("table.js-smart-table")).forEach(initSmartTable);
+
+        // Close open filter panels when clicking outside
+        document.addEventListener("click", () => {
+            document.querySelectorAll(".table-filter-panel-open").forEach((el) => {
+                el.classList.add("hidden");
+                el.classList.remove("table-filter-panel-open");
+            });
+        });
     }
 
     if (document.readyState === "loading") {
