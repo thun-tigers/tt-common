@@ -1,0 +1,54 @@
+{# tt_common/macros.html — geteilte UI-Bausteine. In Service-Templates importieren mit:
+   {% from "tt_common/macros.html" import badge, empty_state, nav_tab, apps_link %} #}
+
+{% macro badge(variant, icon, text) %}
+{% set styles = {
+  'success': 'background:#f0fdf4; color:#15803d;',
+  'warning': 'background:#fffbeb; color:#b45309;',
+  'danger':  'background:#fef2f2; color:#b91c1c;',
+  'info':    'background:#eff6ff; color:#1d4ed8;',
+  'neutral': 'background:#f1f5f9; color:#475569;',
+} %}
+<span class="dark:!bg-opacity-20" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; padding:5px 10px; border-radius:999px; {{ styles.get(variant, styles['neutral']) }}">
+  {% if icon %}<i class="bi {{ icon }}"></i>{% endif %}{{ text }}
+</span>
+{% endmacro %}
+
+{% macro empty_state(icon, title, hint, action_html=None) %}
+<div class="flex flex-col items-center justify-center text-center py-16">
+  <div class="flex items-center justify-center w-14 h-14 rounded-2xl bg-slate-100 dark:bg-slate-700 mb-4">
+    <i class="bi {{ icon }} text-2xl text-slate-400 dark:text-slate-500"></i>
+  </div>
+  <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">{{ title }}</h3>
+  <p class="text-sm text-slate-500 dark:text-slate-400">{{ hint }}</p>
+  {% if action_html %}<div class="mt-4">{{ action_html|safe }}</div>{% endif %}
+</div>
+{% endmacro %}
+
+{% macro nav_tab(label, icon, active, href, count=None) %}
+<a href="{{ href }}" class="relative inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-lg transition
+  {{ 'bg-white dark:bg-slate-800 text-indigo-700 dark:text-indigo-300 shadow-sm ring-1 ring-indigo-100 dark:ring-indigo-900' if active else 'text-slate-500 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-800 hover:text-slate-900' }}">
+  <i class="bi {{ icon }}"></i>{{ label }}
+  {% if count and count > 0 %}
+  <span class="min-w-[16px] h-[16px] px-1 flex items-center justify-center rounded-full bg-red-500 text-white text-[9px] font-bold">{{ count if count < 100 else '99+' }}</span>
+  {% endif %}
+</a>
+{% endmacro %}
+
+{% macro apps_link(url, count=0, label='Apps') %}
+{# Desktop: Icon + Text im App-Bar. Mobile: identisches Muster im nav_mobile-Block der
+   Services, damit "Apps" nicht nur ein Tooltip ist. Touch-Target 44px auf Mobile. #}
+<a href="{{ url }}" class="relative hidden lg:inline-flex items-center gap-1.5 h-8 px-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-indigo-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="{{ label }}">
+  <i class="bi bi-grid-fill"></i>
+  <span class="text-xs font-semibold">{{ label }}</span>
+  {% if count and count > 0 %}
+  <span class="absolute -top-1 -right-1 min-w-[16px] h-[16px] px-1 flex items-center justify-center rounded-full bg-red-500 text-white text-[9px] font-bold">{{ count if count < 100 else '99+' }}</span>
+  {% endif %}
+</a>
+<a href="{{ url }}" class="relative lg:hidden h-11 w-11 grid place-items-center rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="{{ label }}" aria-label="{{ label }}">
+  <i class="bi bi-grid-fill text-lg"></i>
+  {% if count and count > 0 %}
+  <span class="absolute top-1 right-1 min-w-[16px] h-[16px] px-1 flex items-center justify-center rounded-full bg-red-500 text-white text-[9px] font-bold">{{ count if count < 100 else '99+' }}</span>
+  {% endif %}
+</a>
+{% endmacro %}
