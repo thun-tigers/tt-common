@@ -26,13 +26,22 @@
 {% endmacro %}
 
 {% macro nav_tab(label, icon, active, href, count=None) %}
-<a href="{{ href }}" class="relative inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-lg transition
+<a href="{{ href }}" {% if active %}aria-current="page"{% endif %} class="relative inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-lg transition
   {{ 'bg-white dark:bg-slate-800 text-indigo-700 dark:text-indigo-300 shadow-sm ring-1 ring-indigo-100 dark:ring-indigo-900' if active else 'text-slate-500 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-800 hover:text-slate-900' }}">
   <i class="bi {{ icon }}"></i>{{ label }}
   {% if count and count > 0 %}
   <span class="min-w-[16px] h-[16px] px-1 flex items-center justify-center rounded-full bg-red-500 text-white text-[9px] font-bold">{{ count if count < 100 else '99+' }}</span>
   {% endif %}
 </a>
+{% endmacro %}
+
+{% macro status_card(variant='neutral', href=None, compact=False, extra_classes='') %}
+{% set classes = 'tt-status-card tt-status-' ~ variant ~ (' tt-status-card--compact' if compact else '') ~ (' ' ~ extra_classes if extra_classes else '') %}
+{% if href %}
+<a href="{{ href }}" class="{{ classes }}">{{ caller() }}</a>
+{% else %}
+<section class="{{ classes }}">{{ caller() }}</section>
+{% endif %}
 {% endmacro %}
 
 {% macro apps_link(url, count=0, label='Apps') %}
