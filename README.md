@@ -46,7 +46,7 @@ statischen Assets unter `/tt-common-static/...` ausliefert.
 
 ```
 requirements.txt:
-  tt-common @ git+https://github.com/thun-tigers/tt-common@v0.1.0
+  tt-common @ git+https://github.com/thun-tigers/tt-common@v0.1.15
 ```
 
 ```python
@@ -100,6 +100,7 @@ tt_common/
   sso.py                          validate_sso_token, Login-/Logout-URLs
   sso_replay.py                   Single-Use-Replay-Schutz (Redis)
   templates/tt_common/base.html   geteiltes Layout mit Bloecken
+  templates/tt_common/macros.html geteilte Jinja-Makros (badge, empty_state, nav_tab, apps_link, status_card)
   static/tt_common/
     tt-logo.png
     js/table_enhancements.js

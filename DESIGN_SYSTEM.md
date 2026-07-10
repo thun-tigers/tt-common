@@ -8,7 +8,7 @@ und Empty-States mehr zwischen tt-auth/tt-members/tt-agenda/tt-analytics/tt-atte
 
 ```
 templates/tt_common/base.html      aktualisiert: Apps-Icon+Label, größere Touch-Targets, reichere Flash-Messages
-templates/tt_common/macros.html    neu: badge(), empty_state(), nav_tab(), apps_link()
+templates/tt_common/macros.html    neu: badge(), empty_state(), nav_tab(), apps_link(); zusätzlich status_card() für service-interne Karten
 ```
 
 ## 1. Farben (unverändert, jetzt schriftlich fixiert)
