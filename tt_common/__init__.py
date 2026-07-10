@@ -8,7 +8,7 @@ Spaeter geplant: SSO-Client, JWT-Utils, Replay-Schutz (siehe README).
 
 from flask import Blueprint, url_for
 
-__version__ = "0.1.15"
+__version__ = "0.1.17"
 
 __all__ = ["register_shared_ui", "__version__"]
 
