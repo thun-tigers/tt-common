@@ -1,0 +1,12 @@
+{
+  "name": "tigers-ui-build",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Baut tigers.css: statisch kompiliertes Tailwind fuer den gesamten Tigers-Stack (Dual-Tone-Theme).",
+  "scripts": {
+    "build": "tailwindcss -i input.css -o ../../tt_common/static/tt_common/css/tigers.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}

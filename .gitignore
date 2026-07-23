@@ -10,3 +10,4 @@ build/
 venv/
 instance/
 .DS_Store
+design/tailwind/node_modules/

@@ -1,0 +1,8 @@
+/* Inter Variable, self-hosted (rsms/inter v4.1). Ersetzt fonts.googleapis.com. */
+@font-face {
+  font-family: 'InterVariable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/InterVariable.woff2') format('woff2');
+}

@@ -11,12 +11,24 @@ templates/tt_common/base.html      aktualisiert: Apps-Icon+Label, größere Touc
 templates/tt_common/macros.html    neu: badge(), empty_state(), nav_tab(), apps_link(); zusätzlich status_card() für service-interne Karten
 ```
 
-## 1. Farben (unverändert, jetzt schriftlich fixiert)
+## 1. Farben — Dual-Tone (2026-07, ersetzt Indigo/Slate)
 
-- Brand: Indigo-Skala 50–950 (Tailwind-Config in base.html), Primärfarbe `600` (#4f46e5)
-- Neutral: Slate-Skala 50–950
-- Semantik: success=green, warning=amber, danger=red, info=blue — **immer** über `badge()`
-  oder die Flash-Message-Kategorien, nie frei gemischte Tailwind-Klassen im Service-Template.
+- Brand: Club-Purpur-Skala 50–950, aus `tt-logo.png` gemessen — Stufe `700` (#702080)
+  ist die exakte Logo-Farbe. Ersetzt als Override von Tailwinds `indigo`-Namen
+  in `design/tailwind/tailwind.config.js`, damit bestehende `indigo-*`-Klassen in
+  allen Service-Templates ohne Aenderung automatisch umfaerben.
+- Neutral: Zinc-Skala (warm) statt Slate — ebenfalls per Override auf den Namen
+  `slate`, aus demselben Grund.
+- Live-Akzent: Amber, ausschliesslich fuer "gerade live" (laufendes Training,
+  Live-Badge/Hero) — bewusst getrennt von `danger` (Rot bleibt Fehlern
+  vorbehalten). CVD-Validierung (ΔE) und die Mockups liegen im Claude-Designer-
+  Projekt "Tigers Design System".
+- Semantik: success=green, warning=amber, danger=red, info=purple(brand) — **immer**
+  über `badge()`, `tt-status-*` oder die Flash-Message-Kategorien, nie frei
+  gemischte Tailwind-Klassen im Service-Template.
+
+Siehe `design/README.md` für den Tailwind-Build (statisch kompiliert, kein CDN
+mehr) und die self-hosted Fonts/Icons.
 
 ## 2. Radius/Schatten-Skala (neu, ersetzt gemischte rounded-xl/2xl + shadow-lg/2xl)
 
