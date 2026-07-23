@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tt-common"
-version = "0.2.1"
+version = "0.2.2"
 description = "Geteilte Bausteine (UI-Layout, spaeter SSO/JWT) fuer den Tigers-Microservice-Stack"
 requires-python = ">=3.11"
 dependencies = [
@@ -20,5 +20,7 @@ packages = ["tt_common"]
 tt_common = [
     "templates/tt_common/*.html",
     "static/tt_common/*",
+    "static/tt_common/css/*",
     "static/tt_common/js/*",
+    "static/tt_common/fonts/*",
 ]
